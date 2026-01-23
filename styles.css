@@ -1,0 +1,49 @@
+body {
+    font: 100% / 1.125 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif, 'GNU Unifont';
+    background: #333;
+    color: #eee;
+    border-color: #222;
+    outline: #111;
+
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+
+    background: #111;
+}
+
+#heading {
+    width: 300px;
+    display: flex;
+    gap: 20px;
+
+    text-decoration: none;
+}
+
+#blog-title {
+    font-weight: 400;
+    font-style: normal;
+    color:#eee;
+    font-family: "Fleur De Leah", cursive;
+    font-size: 3em;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+/* Fonts */
+
+.fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ephesis-regular {
+  font-family: "Ephesis", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
