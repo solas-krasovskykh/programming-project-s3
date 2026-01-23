@@ -9,7 +9,16 @@
 </head>
 <body>
     <header>
-        <img src="res/uitm_logo.svg" alt="UITM logo">
+        <a href="index.html">
+            <img src="res/uitm_logo.svg" alt="UITM logo">
+            <h1 class="blog-title">Generic Blog</h1>
+        </a>
+        <form name="searchbar" onsubmit="search()"> <!--align to center-->
+            <input type="text" name="search-content">
+            <input type="submit" value="🔎">
+        </form>
+        <div id="user-actions"></div> <!--align to right-->
     </header>
+    <div id="feed"></div>
 </body>
 </html>
