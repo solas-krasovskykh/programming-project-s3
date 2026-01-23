@@ -16,11 +16,14 @@
             <img src="res/uitm_logo.svg" alt="UITM logo">
             <h1 id="blog-title">Generic Blog</h1>
         </a>
-        <form id="searchbar" name="searchbar" onsubmit="search()"> <!--align to center-->
+        <form id="searchbar" name="searchbar" onsubmit="search()">
             <input type="text" name="search-content">
             <input type="submit" value="🔎">
         </form>
-        <div id="user-actions"></div><!--align to right-->
+        <div id="user-actions">
+            <button onClick=logIn()>Log in</button>
+            <button onClick=register()>Register</button>
+        </div>
     </header>
     <div id="feed">
         <div class="post">
