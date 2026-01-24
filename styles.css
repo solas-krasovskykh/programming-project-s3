@@ -18,6 +18,7 @@ header {
     align-items: center;
     padding: 8px 32px 20px;
     width: 100%;
+    /*position: fixed;*/
     
     background: #111;
 }
@@ -31,18 +32,43 @@ header {
 }
 
 #blog-title {
+    color:#eee;
     font-weight: 400;
     font-style: normal;
-    color:#eee;
     font-family: "Ephesis", cursive;
     font-size: 3em;
+
     margin-bottom: 0px;
     margin-top: 0px;
 }
 
 #searchbar {
+    background: #222;
+
     display: flex;
-    height: 22px;
+    height: 30px;
+    padding-left: 12px;
+    border-radius: 16px;
+}
+
+#searchbar>input {
+    border: none;
+    outline: none;
+}
+
+#search-content {
+    background: none;
+    color:#eee;
+}
+
+.icon {
+    padding-left: 25px;
+    background-size: 20px;
+    color:#111;
+}
+
+#searchbar>.icon {
+    background: url("res/search_icon.svg") no-repeat left;
 }
 
 #user-actions {
@@ -54,32 +80,53 @@ header {
 
 #feed {
     margin: 0 20%;
-    background:#333;
     padding: 20px 3%;
     min-height: calc(100vh - 82px);
+
+    display: flex;
+    flex-direction: column; /*swap to column-reverse for sorting by oldest first*/
+    justify-content: start;
+    gap: 20px;
+
+    background:#333;
+
 }
 
 .post {
     background: #222;
     border-radius: 15px;
     padding: 20px 30px 40px;
+    
+    text-wrap: wrap;
+    word-wrap: break-word;
 }
 
 h2 {
     margin-top: 0;
     padding-top: .3em;
-} 
 
-/* Fonts */
+    font-family: "Carattere", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* Font references */
 
 .fleur-de-leah-regular {
-  font-family: "Fleur De Leah", cursive;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Fleur De Leah", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .ephesis-regular {
-  font-family: "Ephesis", cursive;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Ephesis", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.carattere-regular {
+    font-family: "Carattere", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
