@@ -1,4 +1,5 @@
 const users = [["admin","admin"]];
+const posts = [["post1", "author", "cooooooooooooooooooontent"], ["post2", "differentauthor", "cooooooooooooooooooontent"]];
 
 function logIn(){
     let usern = prompt("Username:","");
@@ -9,6 +10,7 @@ function logIn(){
                 alert("Logged in successfully!")
                 document.getElementById("user-actions").innerHTML=
                 "<button onClick=logOut()>Log out</button><div id=user>"+users[i][0]+"</div>";
+                refresh();
                 return;
             }
             else{
@@ -35,12 +37,22 @@ function register(){
 
 function logOut(){
     document.getElementById("user-actions").innerHTML=
-    "<button onClick=logIn()>Log in</button><button onClick=register()>Register</button>";
+    "<button onClick=logIn()>Log in</button><button onClick=register()>Register</button><div id=user style='display: none;'></div>";
+    refresh();
 }
 
-//window.addEventListener('load', function () {
-//    document.getElementById("user-actions").innerHTML=
-//        ""; //convert to form?
-//
-//    fetch('users.txt').then(response => response.text()).then(text => console.log(text))
-//})
+function refresh(){
+    document.getElementById("feed").innerHTML="";
+    let hasButton="";
+    for(let i = posts.length-1; i >= 0; i--){
+        if(posts[i][1] == document.getElementById("user").innerHTML || document.getElementById("user").innerHTML == "admin")
+            hasButton="<button onClick=delete(i)>🗑️</button>";
+        document.getElementById("feed").innerHTML+=
+        "<div class=post><h2>"+posts[i][0]+"</h2>"+hasButton+"<h5>"+posts[i][1]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
+    }
+}
+
+
+window.addEventListener('load', function () {
+    refresh();
+})
