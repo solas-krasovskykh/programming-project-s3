@@ -1,3 +1,5 @@
+/* General styles */
+
 * {
     box-sizing: border-box;
 }
@@ -11,6 +13,32 @@ body {
 
     margin: 0;
 }
+
+.icon {
+    padding-left: 25px;
+    background-size: 20px;
+}
+
+button {
+    background: #222;
+    color: #eee;
+    height: 30px;
+    border: none;
+    border-radius: 16px;
+    padding: 6px 20px;
+
+    font-family: "Carattere", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background: #333;
+}
+
+
+/* Header styles */
 
 header {
     display: flex;
@@ -61,14 +89,12 @@ header {
     color:#eee;
 }
 
-.icon {
-    padding-left: 25px;
-    background-size: 20px;
-    color:#111;
-}
-
 #searchbar>.icon {
     background: url("res/search_icon.svg") no-repeat left;
+}
+
+#searchbar>.icon:hover {
+    background: url("res/search_icon_hover.svg") no-repeat left;
 }
 
 #user-actions {
@@ -77,6 +103,9 @@ header {
     justify-content: flex-end;
     gap: 10px;
 }
+
+
+/* Feed styles */
 
 #feed {
     margin: 0 20%;
