@@ -31,6 +31,9 @@ button {
     font-weight: 400;
     font-style: normal;
     font-size: 1.2em;
+
+    overflow: hidden;
+    /* text-overflow: ellipsis; - doesn't work */
 }
 
 button:hover {
@@ -115,6 +118,17 @@ header {
     gap: 10px;
 }
 
+#user {
+    background: #c93631b5;
+    height: 30px;
+    border-radius: 16px;
+    padding: 6px 20px;
+
+    font-family: "Carattere", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
+}
 
 /* Feed styles */
 
