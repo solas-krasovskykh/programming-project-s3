@@ -57,10 +57,14 @@ header {
     background: #111;
 }
 
-#heading {
+#heading-container {
     width: 500px;
+}
+
+#heading {
     display: flex;
     gap: 20px;
+    width:fit-content;
 
     text-decoration: none;
 }
