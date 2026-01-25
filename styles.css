@@ -37,12 +37,18 @@ button:hover {
     background: #333;
 }
 
+::placeholder {
+    font-weight: 600;
+    font-style: italic;
+}
+
 
 /* Header styles */
 
 header {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
     align-items: center;
     padding: 8px 32px 20px;
     width: 100%;
@@ -101,6 +107,7 @@ header {
     width: 500px;
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap-reverse;
     gap: 10px;
 }
 
@@ -128,6 +135,10 @@ header {
     
     text-wrap: wrap;
     word-wrap: break-word;
+}
+
+.post>.button {
+    background: #111;
 }
 
 h2 {
