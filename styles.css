@@ -53,6 +53,7 @@ button:hover {
     background:#c93631b5;
 }
 
+
 /* Header styles */
 
 header {
@@ -63,6 +64,8 @@ header {
     padding: 8px 32px 20px;
     width: 100%;
     /*position: fixed;*/
+    position: sticky;
+    top: 0;
     
     background: #111;
 }
@@ -135,7 +138,11 @@ header {
     font-weight: 400;
     font-style: normal;
     font-size: 1.2em;
+
+    cursor: default;
+    user-select: none;
 }
+
 
 /* Feed styles */
 
@@ -165,6 +172,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
 }
 
 .post-title {
@@ -193,6 +201,7 @@ header {
 .post-title, .meta, .post-content {
     cursor: default;
 }
+
 
 /* Font references */
 

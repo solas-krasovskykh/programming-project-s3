@@ -9,7 +9,7 @@ function logIn(){ //change to proper input fields?
             if(users[i][1] == passwd){
                 alert("Logged in successfully!")
                 document.getElementById("user-actions").innerHTML=
-                "<button onClick=makePost()>Create post</button><button onClick=logOut()>Log out</button><div id=user>"+users[i][0]+"</div>";
+                "<div id=user>"+users[i][0]+"</div><button onClick=makePost()>Create post</button><button onClick=logOut()>Log out</button>";
                 refresh();
                 return;
             }
@@ -38,7 +38,7 @@ function register(){ //change to proper input fields?
 
 function logOut(){
     document.getElementById("user-actions").innerHTML=
-    "<button onClick=logIn()>Log in</button><button onClick=register()>Register</button><div id=user style='display: none;'></div>";
+    "<div id=user style='display: none;'></div><button onClick=logIn()>Log in</button><button onClick=register()>Register</button>";
     refresh();
 }
 
