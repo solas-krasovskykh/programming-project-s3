@@ -45,6 +45,13 @@ button:hover {
     font-style: italic;
 }
 
+::selection {
+    background:#c93631;
+}
+
+::-moz-selection {
+    background:#c93631b5;
+}
 
 /* Header styles */
 
@@ -153,21 +160,39 @@ header {
     
     text-wrap: wrap;
     word-wrap: break-word;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.post>.button {
-    background: #111;
-}
-
-h2 {
-    margin-top: 0;
-    padding-top: .3em;
+.post-title {
+    margin: .3em 0;
 
     font-family: "Carattere", cursive;
     font-weight: 400;
+    font-size: 1.8em;
     font-style: normal;
 }
 
+.post>button {
+    background: url("res/delete_icon.svg") no-repeat right;
+    padding: 10px 12px;
+    margin: 6px;
+    cursor:pointer;
+}
+
+.meta {
+    width: 100%;
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    margin: 10px 0;
+}
+
+.post-title, .meta, .post-content {
+    cursor: default;
+}
 
 /* Font references */
 

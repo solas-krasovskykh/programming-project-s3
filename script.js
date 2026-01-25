@@ -61,10 +61,10 @@ function refresh(){ //refreshes the post feed + saves everything in the local st
     let hasButton="";
     for(let i = posts.length-1; i >= 0; i--){
         if(posts[i][1] == document.getElementById("user").innerHTML || document.getElementById("user").innerHTML == "admin")
-            hasButton="<button onClick=removePost("+i+")>🗑️</button>";
+            hasButton="<button onClick=removePost("+i+")></button>";
         document.getElementById("feed").innerHTML+=
         "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2>"+hasButton+
-        "<h5>"+posts[i][1]+": "+posts[i][3]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
+        "<h5 class=meta>"+posts[i][1]+": "+posts[i][3]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
     }
     localStorage.postsStorage = JSON.stringify(posts);
     localStorage.usersStorage = JSON.stringify(users);
