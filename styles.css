@@ -203,6 +203,101 @@ header {
 }
 
 
+/* New post creator styles below*/
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: 80%;
+    border: 1px solid #111;
+    border-radius: 15px;
+    padding: 25px 30px 15px;
+
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    
+    background-color: #333;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+#new-post-title, #new-post-content {
+    background: #222;
+    color:#eee;
+
+    border: none;
+    border-radius: 15px;
+    max-width: 100%;
+}
+
+#new-post-title {
+    font-family: "Carattere", cursive;
+    font-weight: 400;
+    font-size: 1.5em;
+    font-style: normal;
+
+    width: 60%;
+    padding: 12px 24px;
+}
+
+#new-post-content {
+    min-width: 100%;
+    padding: 18px 24px;
+}
+
+.modal-header button {
+    cursor: pointer;
+    background: none;
+    padding: 15px;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+#submit-button {
+    background-image: url("res/submit_icon.svg");
+}
+
+#cancel-button {
+    background-image: url("res/cancel_icon.svg");
+}
+
+#new-post-error {
+    color: #c93631;
+    font-style: italic;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+
 /* Font references */
 
 .fleur-de-leah-regular {
@@ -221,70 +316,4 @@ header {
     font-family: "Carattere", cursive;
     font-weight: 400;
     font-style: normal;
-}
-
-/*OVERLAY TESTING BELOW*/
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: #333;
-  width: 500px;
-  max-width: 80%;
-}
-
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-header {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-}
-
-.modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-body {
-  padding: 10px 15px;
-}
-
-#overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
-}
-
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-#new-post-error {
-    color: red;
 }

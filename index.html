@@ -22,7 +22,7 @@
         </div>
         <form id="searchbar" name="searchbar" onsubmit="search()">
             <input type="text" id="search-content" name="search-content" placeholder="Search by title...">
-            <input type="submit" class="icon" value placeholder="🔎">
+            <input type="submit" class="icon" value>
         </form>
         <div id="user-actions">
         </div>
@@ -32,14 +32,15 @@
     <!--OVERLAY TESTING BELOW-->
     <div class="modal" id="modal">
         <div class="modal-header">
-            <div class="title">New entry:</div>
-            <button onclick="makePost()">Post</button>
-            <button onclick="closeCreatorPopup()">&times;</button>
+            <input type="text" id="new-post-title" placeholder="Title...">
+            <div id="modal-buttons">
+                <button id="submit-button" onclick="makePost()"></button>
+                <button id="cancel-button" onclick="closeCreatorPopup()"></button>
+            </div>
         </div>
         <div class="modal-body">
+            <textarea id="new-post-content" rows="4" cols="50" placeholder="How is it going?"></textarea>
             <div id="new-post-error"></div>
-            <input type="text" id="new-post-title" placeholder="Title...">
-            <textarea id="new-post-content" rows="4" cols="50"></textarea>
         </div>
     </div>
     <div id="overlay" onclick="closeCreatorPopup()"></div>
