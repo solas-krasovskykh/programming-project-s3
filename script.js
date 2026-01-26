@@ -57,6 +57,8 @@ function removePost(i){
 }
 
 function openCreatorPopup(){
+    document.getElementById("new-post-title").value = "";
+    document.getElementById("new-post-content").value = "";
     document.getElementById("new-post-error").innerText = "";
     document.getElementById("modal").classList.add("active");
     document.getElementById("overlay").classList.add("active");
@@ -66,15 +68,15 @@ function closeCreatorPopup(){
     document.getElementById("overlay").classList.remove("active");
 }
 
-function makePost(){ //change to proper input fields?
-    let tit = document.getElementById("new-post-title").value;//prompt("Title:","");
+function makePost(){
+    let tit = document.getElementById("new-post-title").value;
     if(tit.length <=0 || tit.length >= 50){
         document.getElementById("new-post-error").innerText = "The title must be between 1-50 characters long!"//alert("The title must be between 1-50 characters long!");
         return;
     }
-    let cont = document.getElementById("new-post-content").value;//prompt("Post content:","");
+    let cont = document.getElementById("new-post-content").value;
     let d = new Date();
-    posts.push([tit, document.getElementById("user").innerHTML, cont, 
+    posts.push([tit, currentUser, cont, 
         d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes()]);
     closeCreatorPopup();
     refreshFeed();
