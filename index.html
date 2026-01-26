@@ -25,11 +25,23 @@
             <input type="submit" class="icon" value placeholder="🔎">
         </form>
         <div id="user-actions">
-            <button onClick=logIn()>Log in</button>
-            <button onClick=register()>Register</button>
-            <div id="user" style="display: none;"></div>
         </div>
     </header>
-    <div id="feed"></div>
+    <div id="feed">
+    </div>
+    <!--OVERLAY TESTING BELOW-->
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">New entry:</div>
+            <button onclick="makePost()">Post</button>
+            <button onclick="closeCreatorPopup()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="new-post-error"></div>
+            <input type="text" id="new-post-title" placeholder="Title...">
+            <textarea id="new-post-content" rows="4" cols="50"></textarea>
+        </div>
+    </div>
+    <div id="overlay" onclick="closeCreatorPopup()"></div>
 </body>
 </html>

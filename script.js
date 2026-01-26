@@ -56,27 +56,38 @@ function removePost(i){
     refreshFeed();
 }
 
+function openCreatorPopup(){
+    document.getElementById("new-post-error").innerText = "";
+    document.getElementById("modal").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeCreatorPopup(){
+    document.getElementById("modal").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+
 function makePost(){ //change to proper input fields?
-    let tit = prompt("Title:","");
+    let tit = document.getElementById("new-post-title").value;//prompt("Title:","");
     if(tit.length <=0 || tit.length >= 50){
-        alert("The title must be between 1-50 characters long!");
-        return
+        document.getElementById("new-post-error").innerText = "The title must be between 1-50 characters long!"//alert("The title must be between 1-50 characters long!");
+        return;
     }
-    let cont = prompt("Post content:","");
+    let cont = document.getElementById("new-post-content").value;//prompt("Post content:","");
     let d = new Date();
     posts.push([tit, document.getElementById("user").innerHTML, cont, 
         d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes()]);
+    closeCreatorPopup();
     refreshFeed();
 }
 
 function refreshUserfield(){
     if(currentUser != ""){
         document.getElementById("user-actions").innerHTML=
-        "<div id=user>"+currentUser+"</div><button onClick=makePost()>Create post</button><button onClick=logOut()>Log out</button>";
+        "<div id=user>"+currentUser+"</div><button onClick=openCreatorPopup()>Create post</button><button onClick=logOut()>Log out</button>";
     }
     else{
         document.getElementById("user-actions").innerHTML=
-        "<div id=user style='display: none;'></div><button onClick=logIn()>Log in</button><button onClick=register()>Register</button>";
+        "<div id=user style='display: none;'></div><button onClick=register()>Register</button><button onClick=logIn()>Log in</button>";
     }
     refreshFeed();
 }
@@ -86,7 +97,7 @@ function refreshFeed(){ //refreshes the post feed + saves everything in the loca
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
         if(posts[i][1] == currentUser || currentUser == "admin")
-            hasButton="<button onClick=removePost("+i+")></button>";
+            hasButton="<button onClick=removePost("+i+")></button>"; //could set up with listeners, but would be annoying to implement
         document.getElementById("feed").innerHTML+=
         "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2>"+hasButton+ //fix formatting (<xmp>?)
         "<h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
