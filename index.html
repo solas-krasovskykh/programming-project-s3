@@ -33,7 +33,7 @@
         <div class="modal-header">
             <input type="text" id="new-post-title" placeholder="Title...">
             <div id="modal-buttons">
-                <button id="submit-button" onclick="makePost()"></button>
+                <button id="submit-button" onclick="makePost(-1)"></button>
                 <button id="cancel-button" onclick="closeCreatorPopup()"></button>
             </div>
         </div>
@@ -43,5 +43,6 @@
         </div>
     </div>
     <div id="overlay" onclick="closeCreatorPopup()"></div>
+    <div id="loading" class="active"></div>
 </body>
 </html>

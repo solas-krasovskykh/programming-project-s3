@@ -298,6 +298,23 @@ header {
     padding-left: 10px;
 }
 
+#loading { /*make prettier maybe?*/
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111;
+    pointer-events: none;
+}
+
+#loading.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 
 /* Font references */
 

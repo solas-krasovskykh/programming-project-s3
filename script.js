@@ -1,6 +1,6 @@
 let currentUser = "";
-let users = [];
-let posts = [];
+let users = []; //structure: username, password
+let posts = []; //structure: title, username, content, date, was edited?
 
 function logIn(){ //change to proper input fields?
     let usern = prompt("Username:","");
@@ -56,10 +56,14 @@ function removePost(i){
     refreshFeed();
 }
 
-function openCreatorPopup(){
-    document.getElementById("new-post-title").value = "";
-    document.getElementById("new-post-content").value = "";
+function openCreatorPopup(which){
+    let posthelper=["", "", "", ""];
+    if(which != -1) //which = -1 means a new post
+        posthelper = posts[which];
+    document.getElementById("new-post-title").value = posthelper[0];
+    document.getElementById("new-post-content").value = posthelper[2];
     document.getElementById("new-post-error").innerText = "";
+    document.getElementById("submit-button").setAttribute( "onClick", "makePost("+which+")" );
     document.getElementById("modal").classList.add("active");
     document.getElementById("overlay").classList.add("active");
 }
@@ -68,7 +72,7 @@ function closeCreatorPopup(){
     document.getElementById("overlay").classList.remove("active");
 }
 
-function makePost(){
+function makePost(which){ //also edits existing posts
     let tit = document.getElementById("new-post-title").value;
     if(tit.length <=0 || tit.length >= 50){
         document.getElementById("new-post-error").innerText = "The title must be between 1-50 characters long!"//alert("The title must be between 1-50 characters long!");
@@ -76,8 +80,14 @@ function makePost(){
     }
     let cont = document.getElementById("new-post-content").value;
     let d = new Date();
-    posts.push([tit, currentUser, cont, 
-        d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes()]);
+    let newPost = [tit, currentUser, cont, 
+        d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes(), ""];
+    if(which == -1)
+        posts.push(newPost);
+    else{
+        posts[which] = newPost;
+        posts[which][4] = " (edited)"
+    }
     closeCreatorPopup();
     refreshFeed();
 }
@@ -85,7 +95,7 @@ function makePost(){
 function refreshUserfield(){
     if(currentUser != ""){
         document.getElementById("user-actions").innerHTML=
-        "<div id=user>"+currentUser+"</div><button onClick=openCreatorPopup()>Create post</button><button onClick=logOut()>Log out</button>";
+        "<div id=user>"+currentUser+"</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>";
     }
     else{
         document.getElementById("user-actions").innerHTML=
@@ -98,11 +108,14 @@ function refreshFeed(){ //refreshes the post feed + saves everything in the loca
     document.getElementById("feed").innerHTML="";
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
-        if(posts[i][1] == currentUser || currentUser == "admin")
-            hasButton="<button onClick=removePost("+i+")></button>"; //could set up with listeners, but would be annoying to implement
+        if(posts[i][1] == currentUser || currentUser == "admin"){
+            hasButton = "<button onClick=removePost("+i+")></button>";
+            if(posts[i][1] == currentUser)
+                hasButton = "<button onClick=openCreatorPopup("+i+")>edit</button>" + hasButton;
+        }
         document.getElementById("feed").innerHTML+=
         "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2>"+hasButton+ //fix formatting (<xmp>?)
-        "<h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
+        "<h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+posts[i][4]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
         hasButton = "";
     }
     saveData();
@@ -127,4 +140,5 @@ window.addEventListener('load', function () { //creates default post + admin acc
     currentUser = localStorage.storedUser;
     refreshUserfield();
     refreshFeed();
+    document.getElementById("loading").classList.remove("active");
 })
