@@ -145,16 +145,40 @@ header {
 
 /* Authorization box styles */
 
+#auth-box-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+
+}
+
 #auth-box {
-    margin: 0 15px;
-    width: 100%;
+    margin: 15px;
     max-width: 450px;
     padding: 30px;
     background: #111;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position:absolute;
-    right:0;
+    right:2%;
+    display: flex;
+}
+
+#login-form, #register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    box-shadow: 0px 0px 40px 5px black;
+
+}
+
+#login-form input, #register-form input {
+    background:none;
+    
 }
 
 /* Feed styles */
