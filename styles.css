@@ -4,12 +4,28 @@
     box-sizing: border-box;
 }
 
+:root {
+    --text-color: #eee;
+    --darkest-color: #111;
+    --middle-color: #222;
+    --lightest-color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #111;
+        --darkest-color: #222;
+        --middle-color: #333;
+        --lightest-color: #eee;
+    }
+}
+
 body {
     font: 100% / 1.125 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif, 'GNU Unifont';
-    background: #222;
-    color: #eee;
-    border-color: #222;
-    outline: #111;
+    background: var(--middle-color);
+    color: var(--text-color);
+    border-color: var(--middle-color);
+    outline: var(--darkest-color);
 
     margin: 0;
 }
@@ -20,8 +36,8 @@ body {
 }
 
 button {
-    background: #222;
-    color: #eee;
+    background: var(--middle-color);
+    color: var(--text-color);
     height: 30px;
     border: none;
     border-radius: 16px;
@@ -37,7 +53,7 @@ button {
 }
 
 button:hover {
-    background: #333;
+    background: var(--lightest-color);
 }
 
 ::placeholder {
@@ -67,7 +83,8 @@ header {
     position: sticky;
     top: 0;
     
-    background: #111;
+    background: var(--darkest-color);
+    box-shadow: 0 0 15px var(--darkest-color);
 }
 
 #heading-container {
@@ -83,7 +100,7 @@ header {
 }
 
 #blog-title {
-    color:#eee;
+    color:var(--text-color);
     font-weight: 400;
     font-style: normal;
     font-family: "Ephesis", cursive;
@@ -94,7 +111,7 @@ header {
 }
 
 #searchbar {
-    background: #222;
+    background: var(--middle-color);
 
     display: flex;
     height: 30px;
@@ -109,7 +126,7 @@ header {
 
 #search-content {
     background: none;
-    color:#eee;
+    color:var(--text-color);
 }
 
 #searchbar>.icon {
@@ -143,22 +160,25 @@ header {
     user-select: none;
 }
 
+
 /* Authorization box styles */
 
 #auth-box-container {
     width: 20%;
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: fixed;
+    z-index: -1;
     right: 0;
 
 }
 
 #auth-box {
-    margin: 15px;
+    width: 80%;
     max-width: 450px;
     padding: 30px;
-    background: #111;
+    margin: 15px;
+    background: var(--darkest-color);
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     right:2%;
@@ -172,14 +192,16 @@ header {
     gap: 20px;
     flex-wrap: wrap;
 
-    box-shadow: 0px 0px 40px 5px black;
+    /* box-shadow: 0px 0px 40px 5px black; - looks better without? */
 
 }
 
 #login-form input, #register-form input {
-    background:none;
-    
+    background: var(--middle-color);
+    border: none;
+    width: 100%;
 }
+
 
 /* Feed styles */
 
@@ -193,13 +215,13 @@ header {
     justify-content: start;
     gap: 20px;
 
-    background:#333;
+    background:var(--lightest-color);
 
-    box-shadow: 0px 0px 40px 5px black;
+    box-shadow: 0 0 40px 5px var(--darkest-color);
 }
 
 .post {
-    background: #222;
+    background: var(--middle-color);
     border-radius: 15px;
     padding: 20px 30px 40px;
     
@@ -222,11 +244,19 @@ header {
     font-style: normal;
 }
 
-.post>button {
-    background: url("res/delete_icon.svg") no-repeat right;
+.post-actions>button {
+    background: no-repeat right;
     padding: 10px 12px;
     margin: 6px;
     cursor:pointer;
+}
+
+#delete-button {
+    background-image: url("res/delete_icon.svg");
+}
+
+#edit-button {
+    background-image: url("res/edit_icon.svg");
 }
 
 .meta {
@@ -249,14 +279,14 @@ header {
     left: 50%;
     z-index: 10;
     width: 80%;
-    border: 1px solid #111;
+    border: 1px solid var(--darkest-color);
     border-radius: 15px;
     padding: 25px 30px 15px;
 
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
     
-    background-color: #333;
+    background-color: var(--lightest-color);
 }
 
 .modal.active {
@@ -288,8 +318,8 @@ header {
 }
 
 #new-post-title, #new-post-content {
-    background: #222;
-    color:#eee;
+    background: var(--middle-color);
+    color:var(--text-color);
 
     border: none;
     border-radius: 15px;
@@ -343,7 +373,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #111;
+    background-color: var(--darkest-color);
     pointer-events: none;
 }
 

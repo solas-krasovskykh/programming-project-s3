@@ -86,7 +86,7 @@ function makePost(which){ //also edits existing posts
         posts.push(newPost);
     else{
         posts[which] = newPost;
-        posts[which][4] = " (edited)"
+        posts[which][4] = " (edited)" //!!gets added also when no edits done, only the edit window opened - maybe needs fixing?
     }
     closeCreatorPopup();
     refreshFeed();
@@ -109,13 +109,13 @@ function refreshFeed(){ //refreshes the post feed + saves everything in the loca
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
         if(posts[i][1] == currentUser || currentUser == "admin"){
-            hasButton = "<button onClick=removePost("+i+")></button>";
+            hasButton = "<button id=delete-button onClick=removePost("+i+")></button>";
             if(posts[i][1] == currentUser)
-                hasButton = "<button onClick=openCreatorPopup("+i+")>edit</button>" + hasButton;
+                hasButton = "<button id=edit-button onClick=openCreatorPopup("+i+")></button>" + hasButton;
         }
         document.getElementById("feed").innerHTML+=
-        "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2>"+hasButton+ //fix formatting (<xmp>?)
-        "<h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+posts[i][4]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
+        "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2><div class=post-actions>"+hasButton+ //fix formatting (<xmp>?)
+        "</div><h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+posts[i][4]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
         hasButton = "";
     }
     saveData();
@@ -130,7 +130,7 @@ function saveData(){
 
 window.addEventListener('load', function () { //creates default post + admin account on initial use / pulls data out of local storage then loads it
     if(localStorage.postsStorage == undefined)
-        localStorage.postsStorage = JSON.stringify([["test", "test", "test", "test "]]);
+        localStorage.postsStorage = JSON.stringify([["test", "test", "test", "test", "test"]]);
     if(localStorage.usersStorage == undefined)
         localStorage.usersStorage = JSON.stringify([["admin", "admin"]]);
     if(localStorage.storedUser == undefined)
