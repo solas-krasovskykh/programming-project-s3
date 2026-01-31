@@ -1,49 +1,58 @@
 let currentUser = "";
 let users = []; //structure: username, password
-let posts = []; //structure: title, username, content, date, was edited?
+let posts = []; //structure: title, username, content, date, was edited
 
-function logIn(){ //change to proper input fields?
-    let usern = prompt("Username:","");
+function showAuth(which){
+    document.getElementById("auth-box-container").classList.add("active");
+    document.getElementById(["login-form", "register-form"][which]).style.display = "flex";
+    document.getElementById(["register-form", "login-form"][which]).style.display = "none";
+    document.getElementById("login-error").innerText = document.getElementById("register-error").innerText = "";
+}
+
+function logIn(){
+    let usern = document.getElementById("login-username").value;
     for(let i = 0; i < users.length; i++){
         if(users[i][0] == usern){
-            let passwd = prompt("Password:","");
+            let passwd = document.getElementById("login-password").value;
             if(users[i][1] == passwd){
-                alert("Logged in successfully!")
                 currentUser = usern;
                 refreshUserfield();
                 return;
             }
             else{
-                alert("Incorrect password!")
+                document.getElementById("login-error").innerText = "Incorrect password!";
                 return;
             }
         }
     }
-    alert("User does not exist!")
+    document.getElementById("login-error").innerText = "User does not exist!";
 }
 
-function register(){ //change to proper input fields?
-    let usern = prompt("Username:","");
+function register(){
+    let usern = document.getElementById("register-username").value;
     if(usern.length >=1 && usern.length <= 20){
         for(let i = 0; i < users.length; i++){
             if(users[i][0] == usern){
-                alert("User already exists!");
+                document.getElementById("register-error").innerText = "User already exists!";
                 return;
             }
         }
     }
     else{
-        alert("Username has to be between 1-20 characters long!");
+        document.getElementById("register-error").innerText = "Username has to be between 1-20 characters long!";
         return;
     }
-    let passwd = prompt("Password:","");
-    if(passwd.length >= 4 && passwd.length <= 30){ //add more requirements - capital letter, number and such
+    let passwd = document.getElementById("register-password").value;
+    if(passwd.length >= 4 && passwd.length <= 30){ //add more requirements? - capital letter, number and such
+        if(passwd != document.getElementById("confirm_password").value){
+            document.getElementById("register-error").innerText = "The passwords must line up!";
+            return;
+        }
         users.push([usern, passwd]);
-        alert("User created successfully!");
         currentUser = usern;
         refreshUserfield();
     }
-    else alert("Password has to be between 4-30 characters long!");
+    else document.getElementById("register-error").innerText = "Password has to be between 4-30 characters long!";
 }
 
 function logOut(){
@@ -58,12 +67,12 @@ function removePost(i){
 
 function openCreatorPopup(which){
     let posthelper=["", "", "", ""];
-    if(which != -1) //which = -1 means a new post
+    if(which != -1) //"which" = -1 means a new post
         posthelper = posts[which];
     document.getElementById("new-post-title").value = posthelper[0];
     document.getElementById("new-post-content").value = posthelper[2];
     document.getElementById("new-post-error").innerText = "";
-    document.getElementById("submit-button").setAttribute( "onClick", "makePost("+which+")" );
+    document.getElementById("submit-button").setAttribute( "onClick", `makePost(${which})` );
     document.getElementById("modal").classList.add("active");
     document.getElementById("overlay").classList.add("active");
 }
@@ -81,25 +90,27 @@ function makePost(which){ //also edits existing posts
     let cont = document.getElementById("new-post-content").value;
     let d = new Date();
     let newPost = [tit, currentUser, cont, 
-        d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+", "+d.getHours()+":"+d.getMinutes(), ""];
+        `${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}, ${d.getHours()}:${d.getMinutes()<10?"0":""}${d.getMinutes()}`, ""];
     if(which == -1)
         posts.push(newPost);
     else{
         posts[which] = newPost;
-        posts[which][4] = " (edited)" //!!gets added also when no edits done, only the edit window opened - maybe needs fixing?
+        posts[which][4] = "(edited)"
     }
     closeCreatorPopup();
     refreshFeed();
 }
 
+
 function refreshUserfield(){
+    document.getElementById("auth-box-container").classList.remove("active");
     if(currentUser != ""){
         document.getElementById("user-actions").innerHTML=
         `<div id=user>${currentUser}</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>`;
     }
     else{
         document.getElementById("user-actions").innerHTML=
-        "<div id=user style='display: none;'></div><button onClick=register()>Register</button><button onClick=logIn()>Log in</button>";
+        "<div id=user style='display: none;'></div><button onClick=showAuth(1)>Register</button><button onClick=showAuth(0)>Log in</button>";
     }
     refreshFeed();
 }
@@ -109,12 +120,12 @@ function refreshFeed(){ //refreshes the post feed + saves everything in the loca
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
         if(posts[i][1] == currentUser || currentUser == "admin"){
-            hasButton = `<button onClick=removePost(${i})></button>`;
+            hasButton = `<button id=delete-button onClick=removePost(${i})></button>`;
             if(posts[i][1] == currentUser)
-                hasButton = `<button onClick=openCreatorPopup(${i})>edit</button>` + hasButton;
+                hasButton = `<button id=edit-button onClick=openCreatorPopup(${i})></button>` + hasButton;
         }
         document.getElementById("feed").innerHTML+=
-        `<div class=post><h2 class=post-title>${posts[i][0]}</h2>${hasButton}<h5 class=meta>${posts[i][3]} by ${posts[i][1]} ${posts[i][4]}</h5><div class=post-content>${posts[i][2]}</div></div>`;
+        `<div class=post><h2 class=post-title>${posts[i][0]}</h2><div class=post-actions>${hasButton}</div><h5 class=meta>${posts[i][3]} by ${posts[i][1]} ${posts[i][4]}</h5><div class=post-content>${posts[i][2]}</div></div>`;
         hasButton = "";
     }
     saveData();

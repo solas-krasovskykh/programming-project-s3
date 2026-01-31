@@ -11,7 +11,7 @@
     --lightest-color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --text-color: #111;
         --darkest-color: #222;
@@ -168,9 +168,14 @@ header {
     display: flex;
     justify-content: center;
     position: fixed;
-    z-index: -1;
     right: 0;
 
+    transform: scale(0);
+    transition: 200ms ease-in-out;
+}
+
+#auth-box-container.active {
+    transform: scale(1);
 }
 
 #auth-box {
@@ -362,6 +367,12 @@ header {
     color: #c93631;
     font-style: italic;
     margin-top: 20px;
+    padding-left: 10px;
+}
+
+#login-error, #register-error {
+    color: #c93631;
+    font-style: italic;
     padding-left: 10px;
 }
 
