@@ -86,7 +86,7 @@ function makePost(which){ //also edits existing posts
         posts.push(newPost);
     else{
         posts[which] = newPost;
-        posts[which][4] = " (edited)"
+        posts[which][4] = " (edited)" //!!gets added also when no edits done, only the edit window opened - maybe needs fixing?
     }
     closeCreatorPopup();
     refreshFeed();
@@ -129,7 +129,7 @@ function saveData(){
 
 window.addEventListener('load', function () { //creates default post + admin account on initial use / pulls data out of local storage then loads it
     if(localStorage.postsStorage == undefined)
-        localStorage.postsStorage = JSON.stringify([["test", "test", "test", "test "]]);
+        localStorage.postsStorage = JSON.stringify([["test", "test", "test", "test", "test"]]);
     if(localStorage.usersStorage == undefined)
         localStorage.usersStorage = JSON.stringify([["admin", "admin"]]);
     if(localStorage.storedUser == undefined)
