@@ -95,7 +95,7 @@ function makePost(which){ //also edits existing posts
 function refreshUserfield(){
     if(currentUser != ""){
         document.getElementById("user-actions").innerHTML=
-        "<div id=user>"+currentUser+"</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>";
+        `<div id=user>${currentUser}</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>`;
     }
     else{
         document.getElementById("user-actions").innerHTML=
@@ -109,13 +109,12 @@ function refreshFeed(){ //refreshes the post feed + saves everything in the loca
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
         if(posts[i][1] == currentUser || currentUser == "admin"){
-            hasButton = "<button onClick=removePost("+i+")></button>";
+            hasButton = `<button onClick=removePost(${i})></button>`;
             if(posts[i][1] == currentUser)
-                hasButton = "<button onClick=openCreatorPopup("+i+")>edit</button>" + hasButton;
+                hasButton = `<button onClick=openCreatorPopup(${i})>edit</button>` + hasButton;
         }
         document.getElementById("feed").innerHTML+=
-        "<div class=post><h2 class=post-title>"+posts[i][0]+"</h2>"+hasButton+ //fix formatting (<xmp>?)
-        "<h5 class=meta>"+posts[i][3]+" by "+posts[i][1]+posts[i][4]+"</h5><div class=post-content>"+posts[i][2]+"</div></div>";
+        `<div class=post><h2 class=post-title>${posts[i][0]}</h2>${hasButton}<h5 class=meta>${posts[i][3]} by ${posts[i][1]} ${posts[i][4]}</h5><div class=post-content>${posts[i][2]}</div></div>`;
         hasButton = "";
     }
     saveData();
