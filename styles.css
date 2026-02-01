@@ -393,6 +393,10 @@ header {
     pointer-events: all;
 }
 
+#panel {
+    list-style-type: none;
+}
+
 
 /* Font references */
 

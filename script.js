@@ -60,6 +60,15 @@ function logOut(){
     refreshUserfield();
 }
 
+function removeUser(which){
+    for(i = 0; i<posts.length; i++){
+        if(posts[i][1] == users[which][0])
+            posts[i][1] = "(removed)";
+    }
+    users.splice(which, 1)
+    refreshUserfield();
+}
+
 function removePost(i){
     posts.splice(i, 1);
     refreshFeed();
@@ -107,10 +116,16 @@ function refreshUserfield(){
     if(currentUser != ""){
         document.getElementById("user-actions").innerHTML=
         `<div id=user>${currentUser}</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>`;
+        if(currentUser == "admin"){
+            document.getElementById("panel").innerHTML = "";
+            for(let i = 1; i<users.length; i++)
+                document.getElementById("panel").innerHTML += `<li>${users[i][0]}<button id=delete-button onclick=removeUser(${i})></button</li>`;
+        }
     }
     else{
         document.getElementById("user-actions").innerHTML=
         "<div id=user style='display: none;'></div><button onClick=showAuth(1)>Register</button><button onClick=showAuth(0)>Log in</button>";
+        document.getElementById("panel").innerHTML = "";
     }
     refreshFeed();
 }
