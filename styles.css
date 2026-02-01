@@ -14,8 +14,8 @@
 @media (prefers-color-scheme: light) {
     :root {
         --text-color: #111;
-        --darkest-color: #222;
-        --middle-color: #333;
+        --darkest-color: #bbb;
+        --middle-color: #ccc;
         --lightest-color: #eee;
     }
 }
@@ -62,7 +62,7 @@ button:hover {
 }
 
 ::selection {
-    background:#c93631;
+    background:#c93631b5;
 }
 
 ::-moz-selection {

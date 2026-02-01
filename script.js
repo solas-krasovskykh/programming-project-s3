@@ -139,7 +139,7 @@ function refreshFeed(isSearch){ //refreshes the post feed + saves everything in 
     if(isSearch == 1)
         search = document.getElementById("search-content").value.toLowerCase();
     for(let i = posts.length-1; i >= 0; i--){
-        if(posts[i][0].toLowerCase().includes(search) || posts[i][2].toLowerCase().includes(search)){
+        if(posts[i][0].toLowerCase().includes(search) || posts[i][1].toLowerCase().includes(search) || posts[i][2].toLowerCase().includes(search)){
             if(posts[i][1] == currentUser || currentUser == "admin"){
                 hasButton = `<button id=delete-button onClick=removePost(${i})></button>`;
                 if(posts[i][1] == currentUser)
