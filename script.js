@@ -118,6 +118,7 @@ function refreshUserfield(){
         `<div id=user>${currentUser}</div><button onClick=openCreatorPopup(-1)>Create post</button><button onClick=logOut()>Log out</button>`;
         if(currentUser == "admin"){
             document.getElementById("panel").innerHTML = "";
+            document.getElementById("panel").style.display = "flex";
             for(let i = 1; i<users.length; i++)
                 document.getElementById("panel").innerHTML += `<li>${users[i][0]}<button id=delete-button onclick=removeUser(${i})></button</li>`;
         }
@@ -126,6 +127,7 @@ function refreshUserfield(){
         document.getElementById("user-actions").innerHTML=
         "<div id=user style='display: none;'></div><button onClick=showAuth(1)>Register</button><button onClick=showAuth(0)>Log in</button>";
         document.getElementById("panel").innerHTML = "";
+        document.getElementById("panel").style.display = "none";
     }
     refreshFeed();
 }
