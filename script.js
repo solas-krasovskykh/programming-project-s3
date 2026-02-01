@@ -130,7 +130,7 @@ function refreshUserfield(){
     refreshFeed();
 }
 
-function refreshFeed(){ //refreshes the post feed + saves everything in the local storage
+function refreshFeed(isSearch){ //refreshes the post feed + saves everything in the local storage
     document.getElementById("feed").innerHTML="";
     let hasButton = "";
     for(let i = posts.length-1; i >= 0; i--){
@@ -155,7 +155,7 @@ function saveData(){
 
 window.addEventListener('load', function () { //creates default post + admin account on initial use / pulls data out of local storage then loads it
     if(localStorage.postsStorage == undefined)
-        localStorage.postsStorage = JSON.stringify([["test", "test", "test", "test", "test"]]);
+        localStorage.postsStorage = JSON.stringify([["First post", "admin", "This post shows up by default the first time the website is booted.", "1.1.1970, 0:00", ""]]);
     if(localStorage.usersStorage == undefined)
         localStorage.usersStorage = JSON.stringify([["admin", "admin"]]);
     if(localStorage.storedUser == undefined)

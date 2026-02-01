@@ -21,10 +21,10 @@
                 <h1 id="blog-title">Generique Blog</h1>
             </a>
         </div>
-        <form id="searchbar" name="searchbar" onsubmit="search()">
-            <input type="text" id="search-content" name="search-content" placeholder="Search by title...">
-            <input type="submit" class="icon" value>
-        </form>
+        <div id="searchbar">
+            <input type="text" id="search-content" placeholder="Search by title...">
+            <button class="icon" style="margin-right: -15px" onclick="refreshFeed(1)"></button>
+        </div>
         <div id="user-actions"></div>
     </header>
     <div id="auth-box-container">
@@ -33,7 +33,7 @@
                 <input type="text" id="login-username" placeholder="Username">
                 <input type="password" id="login-password" placeholder="Password">
                 <div id="login-error"></div>
-                <button onclick="logIn()">Login</button>
+                <button onclick="logIn()">Log in</button>
             </div>
             <div id="register-form" style="display:none;">
                 <input type="text" id="register-username" placeholder="Username">
@@ -44,7 +44,9 @@
             </div>
         </div>
     </div>
-    <ul id="panel"></ul>
+    <div id="panel-container">
+        <ul id="panel"></ul>
+    </div>
     <div id="feed"></div>
     <div class="modal" id="modal">
         <div class="modal-header">
