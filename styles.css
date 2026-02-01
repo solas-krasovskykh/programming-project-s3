@@ -14,9 +14,9 @@
 @media (prefers-color-scheme: light) {
     :root {
         --text-color: #111;
-        --darkest-color: #bbb;
+        --darkest-color: #aaa;
         --middle-color: #ccc;
-        --lightest-color: #eee;
+        --lightest-color: #ddd;
     }
 }
 
