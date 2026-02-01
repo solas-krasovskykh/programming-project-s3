@@ -133,15 +133,20 @@ function refreshUserfield(){
 function refreshFeed(isSearch){ //refreshes the post feed + saves everything in the local storage
     document.getElementById("feed").innerHTML="";
     let hasButton = "";
+    let search = "";
+    if(isSearch == 1)
+        search = document.getElementById("search-content").value.toLowerCase();
     for(let i = posts.length-1; i >= 0; i--){
-        if(posts[i][1] == currentUser || currentUser == "admin"){
-            hasButton = `<button id=delete-button onClick=removePost(${i})></button>`;
-            if(posts[i][1] == currentUser)
-                hasButton = `<button id=edit-button onClick=openCreatorPopup(${i})></button>` + hasButton;
+        if(posts[i][0].toLowerCase().includes(search) || posts[i][2].toLowerCase().includes(search)){
+            if(posts[i][1] == currentUser || currentUser == "admin"){
+                hasButton = `<button id=delete-button onClick=removePost(${i})></button>`;
+                if(posts[i][1] == currentUser)
+                    hasButton = `<button id=edit-button onClick=openCreatorPopup(${i})></button>` + hasButton;
+            }
+            document.getElementById("feed").innerHTML+=
+            `<div class=post><h2 class=post-title>${posts[i][0]}</h2><div class=post-actions>${hasButton}</div><h5 class=meta>${posts[i][3]} by ${posts[i][1]} ${posts[i][4]}</h5><div class=post-content>${posts[i][2]}</div></div>`;
+            hasButton = "";
         }
-        document.getElementById("feed").innerHTML+=
-        `<div class=post><h2 class=post-title>${posts[i][0]}</h2><div class=post-actions>${hasButton}</div><h5 class=meta>${posts[i][3]} by ${posts[i][1]} ${posts[i][4]}</h5><div class=post-content>${posts[i][2]}</div></div>`;
-        hasButton = "";
     }
     saveData();
 }
