@@ -49,7 +49,6 @@ button {
     font-size: 1.2em;
 
     overflow: hidden;
-    /* text-overflow: ellipsis; - doesn't work */
 }
 
 button:hover {
@@ -79,7 +78,6 @@ header {
     align-items: center;
     padding: 8px 32px 20px;
     width: 100%;
-    /*position: fixed;*/
     position: sticky;
     top: 0;
     
@@ -210,9 +208,6 @@ header {
     gap: 20px;
     flex-wrap: wrap;
     width: 100%;
-
-    /* box-shadow: 0px 0px 40px 5px black; - looks better without? */
-
 }
 
 #login-form input, #register-form input {
@@ -242,7 +237,7 @@ header {
     min-height: calc(100vh - 82px);
 
     display: flex;
-    flex-direction: column; /*swap to column-reverse for sorting by oldest first*/
+    flex-direction: column;
     justify-content: start;
     gap: 20px;
 
@@ -398,7 +393,7 @@ header {
     padding-left: 10px;
 }
 
-#loading { /*make prettier maybe?*/
+#loading {
     position: fixed;
     opacity: 0;
     transition: 200ms ease-in-out;

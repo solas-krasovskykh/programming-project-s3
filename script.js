@@ -43,7 +43,7 @@ function register(){
         return;
     }
     let passwd = document.getElementById("register-password").value;
-    if(passwd.length >= 4 && passwd.length <= 30){ //add more requirements? - capital letter, number and such
+    if(passwd.length >= 4 && passwd.length <= 30){
         if(passwd != document.getElementById("confirm_password").value){
             document.getElementById("register-error").innerText = "The passwords must line up!";
             return;
@@ -93,7 +93,7 @@ function closeCreatorPopup(){
 function makePost(which){ //also edits existing posts
     let tit = document.getElementById("new-post-title").value;
     if(tit.length <=0 || tit.length >= 50){
-        document.getElementById("new-post-error").innerText = "The title must be between 1-50 characters long!"//alert("The title must be between 1-50 characters long!");
+        document.getElementById("new-post-error").innerText = "The title must be between 1-50 characters long!";
         return;
     }
     let cont = document.getElementById("new-post-content").value;
@@ -166,7 +166,7 @@ window.addEventListener('load', function () { //creates default post + admin acc
     if(localStorage.usersStorage == undefined)
         localStorage.usersStorage = JSON.stringify([["admin", "admin"]]);
     if(localStorage.storedUser == undefined)
-        localStorage.storedUser = ""; //code can probably be improved for these lol
+        localStorage.storedUser = "";
     posts = JSON.parse(localStorage.postsStorage);
     users = JSON.parse(localStorage.usersStorage);
     currentUser = localStorage.storedUser;
